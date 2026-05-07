@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📕 this is for you (plan date)</title>
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-image:
+                linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.65)),
+                url('4c26c393-c9ac-4220-8cea-08064589e283.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #6a00ff;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        .subtitle {
+            text-align: center;
+            color: #b04cff;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .step {
+            background: white;
+            margin: 20px 0;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 6px solid #9b59ff;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+        .step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .step:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+       
+        .page-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            pointer-events: none;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.18;
+            filter: blur(1px) saturate(1.2);
+        }
+        .page-bg.bg1 {
+            background-image: url('90a1169f-2d0b-4ec9-b05a-4bdd19692f65.jpg');
+            transform: rotate(-6deg) scale(1.05);
+        }
+        .page-bg.bg2 {
+            background-image: url('145d2c9b-bc98-4506-a50e-145c14a46d11.jpg');
+            transform: rotate(8deg) scale(1.02);
+        }
+        .page-bg.bg3 {
+            background-image: url('90a1169f-2d0b-4ec9-b05a-4bdd19692f65.jpg');
+            transform: rotate(-2deg) scale(1.08);
+            opacity: 0.12;
+        }
+
+
+        .float-photo-one {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 200px;
+            height: 200px;
+            right: 6vw;
+            top: 15vh;
+            transform: rotate(7deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.35);
+            backdrop-filter: blur(6px);
+            opacity: 0.9;
+        }
+        .float-photo-two {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 155px;
+            height: 155px;
+            left: 6vw;
+            top: 46vh;
+            transform: rotate(-10deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.35);
+            backdrop-filter: blur(6px);
+            opacity: 0.75;
+        }
+        .float-photo-three {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 140px;
+            height: 140px;
+            right: 10vw;
+            top: 70vh;
+            transform: rotate(12deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.35);
+            backdrop-filter: blur(6px);
+            opacity: 0.65;
+        }
+        .float-photo-four {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 170px;
+            height: 170px;
+            left: 18vw;
+            top: 18vh;
+            transform: rotate(-18deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.30);
+            backdrop-filter: blur(6px);
+            opacity: 0.55;
+        }
+        .float-photo-five {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 120px;
+            height: 120px;
+            right: 14vw;
+            top: 32vh;
+            transform: rotate(20deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.30);
+            backdrop-filter: blur(6px);
+            opacity: 0.48;
+        }
+        .float-photo-six {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 150px;
+            height: 150px;
+            left: 8vw;
+            top: 75vh;
+            transform: rotate(-8deg);
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.30);
+            backdrop-filter: blur(6px);
+            opacity: 0.45;
+        }
+        .float-photo-one img,
+        .float-photo-two img,
+        .float-photo-three img,
+        .float-photo-four img,
+        .float-photo-five img,
+        .float-photo-six img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .step[data-step="1"] {
+            background-image: url('364eca93-16f5-4442-823f-f16d973b29b9.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(255,255,255,0.88);
+        }
+        .step[data-step="2"] {
+            background-image: url('9537eeb4-15d4-4a75-9c89-4072a59e1ee8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(255,255,255,0.88);
+        }
+        .step[data-step="3"] {
+            background-image: url('88624a49-a45b-432a-a89c-398a9cf94353.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(255,255,255,0.88);
+        }
+        .step[data-step="4"] {
+            background-image: url('d14102e7-6cd3-41cb-9721-740e278d32cd.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(255,255,255,0.88);
+        }
+        .step[data-step="5"] {
+            background-image: url('f9a86048-2e2f-4ce4-ab78-068754c642b8.jpg');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: multiply;
+            background-color: rgba(255,255,255,0.88);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #c2185b;
+        }
+
+        .step-icon {
+            font-size: 1.8em;
+            margin-right: 15px;
+        }
+        .step-content {
+            display: none;
+        }
+        .step.active .step-content {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tip {
+        }
+
+        
+        .float-photo {
+            position: fixed;
+            z-index: -1;
+            pointer-events: none;
+            width: 185px;
+            height: 185px;
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.14);
+            border: 2px solid rgba(255,105,180,0.35);
+            backdrop-filter: blur(6px);
+            opacity: 0.9;
+        }
+
+        .float-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .options {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .option {
+            background: linear-gradient(45deg, #f8bbd9, #f48fb1);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            user-select: none;
+        }
+        .option:hover, .option.selected {
+            background: linear-gradient(45deg, #e91e63, #ad1457);
+            color: white;
+            border-color: #d81b60;
+        }
+        .checkbox-custom {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+        button {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 20px 10px;
+            box-shadow: 0 6px 20px rgba(255,105,180,0.4);
+            transition: all 0.3s;
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,105,180,0.6);
+        }
+        #customizeBtn {
+            background: linear-gradient(45deg, #4caf50, #81c784);
+        }
+        #printBtn {
+            background: linear-gradient(45deg, #2196f3, #64b5f6);
+        }
+        #progress {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            color: #9b59ff;
+        }
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.8em; }
+            .step { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📕 Simple, Sweet, &amp;  Romantic Date Plan</h1>
+    <p class="subtitle">A calm vibe, a bit romantic, but still totally safe. ✨</p>
+
+    
+    <div class="page-bg bg1"></div>
+    <div class="page-bg bg2"></div>
+    <div class="page-bg bg3"></div>
+
+
+   
+    <div class="float-photo one"><img src="f9a86048-2e2f-4ce4-ab78-068754c642b8.jpg" alt=""></div>
+    <div class="float-photo two"><img src="88624a49-a45b-432a-a89c-398a9cf94353.jpg" alt=""></div>
+    <div class="float-photo three"><img src="d14102e7-6cd3-41cb-9721-740e278d32cd.jpg" alt=""></div>
+    <div class="float-photo four"><img src="f7423173-5e31-42d2-b122-6e27a43f8777.jpg" alt=""></div>
+    <div class="float-photo five"><img src="622c49b3-11a2-4bde-8a40-27573a848157.jpg" alt=""></div>
+    <div class="float-photo six"><img src="8b41bf74-1d98-40e1-9183-3195b8fbeca3.jpg" alt=""></div>
+
+
+    <div id="progress">Step <span id="currentStep">0</span> of 5</div>
+
+
+    <div class="step active" data-step="1">
+        <div class="step-header">
+            <span class="step-icon">🎕</span>
+            1. Meet Somewhere Calm &amp; Public
+        </div>
+        <div class="step-content">
+            <p>Choose a place where to date:</p>
+            <div class="options">
+                <div class="option" data-option="cafe">SM Taytay 📃</div>
+                <div class="option" data-option="park">MegaMall 📃</div>
+                <div class="option" data-option="mall">Kapehingahan ☕</div>
+            </div>
+            <div class="tip">Tip: Be ready before 4 pm HEHE iloveyou 💗</div>
+            <label><input type="checkbox" class="checkbox-custom" data-task="meet"> Done! ✅</label>
+        </div>
+    </div>
+
+    <div class="step" data-step="2">
+        <div class="step-header">
+            <span class="step-icon">🎸</span>
+            2. What should we do first
+        </div>
+        <div class="step-content">
+            
+            <div class="options">
+                <div class="option" data-option="snack"> Eat? </div>
+                <div class="option" data-option="flower"> Take a pictur0?e </div>
+                <div class="option" data-option="note"> enjoy the view?</div>
+            </div>
+            <label><input type="checkbox" class="checkbox-custom" data-task="icebreaker"> Done! ✅</label>
+        </div>
+    </div>
+
+    <div class="step" data-step="3">
+        <div class="step-header">
+            <span class="step-icon">🍦</span>
+            3. Light Activity (20–30 mins)
+        </div>
+        <div class="step-content">
+            <div class="options">
+                <div class="option" data-option="icecream">painting</div>
+              
+            </div>
+            <label><input type="checkbox" class="checkbox-custom" data-task="light"> Done! ✅</label>
+        </div>
+    </div>
+
+    <div class="step" data-step="4">
+        <div class="step-header">
+            <span class="step-icon">💖</span>
+            4. Main Romantic Activity (45–60 mins)
+        </div>
+        <div class="step-content">
+            <p>Choose your style:</p>
+            <div class="options">
+                <div class="option" data-option="cafe">A: Share dessert + "Would you rather?" ☕</div>
+                <div class="option" data-option="sunset">B: Sunset walk + aesthetic photos 🌅</div>
+                <div class="option" data-option="arcade">C: Arcade playdate 🎮</div>
+            </div>
+            <label><input type="checkbox" class="checkbox-custom" data-task="main"> Done! ✅</label>
+        </div>
+    </div>
+
+    <div class="step" data-step="5">
+        <div class="step-header">
+            <span class="step-icon">🎙</span>
+            5. Sweet &amp; Safe Ending
+        </div>
+        <div class="step-content">
+            <p>Hello wife eto napo yung bawi ko sayo hehe kasi diba sabi konaman sayo babawi ako sayo palagi naman marami pakong pakulo sa relasyon nato siyempre palagi akong hahanap ng way para mapasaya kita this small efforts is all for youi hope this kalokohan e mapasaya ka tsaka ang hirap kaya neto gawin pero ang saya kasi galing sa puso mahal na mahal kita thankypu for everthing you do for me i apprciate you so much im so grateful that i have you in my life i cant even imagine myself without you in m life i just want to tell you that i need you to trust me and ill make sure that we will win this life together palagi kongang sinasabi sayo malayo na pero malayo pa iloveyousomuch mahal ko hehe </p>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <button id="nextBtn">Next Step ➡️</button>
+        <button id="prevBtn" disabled>⬅️ Previous</button>
+        <br>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                currentStep++;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                updateProgress();
+                document.getElementById('prevBtn').disabled = false;
+                if (currentStep === totalSteps) document.getElementById('nextBtn').textContent = '🎡 Finish!';
+            }
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (currentStep > 1) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                currentStep--;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                updateProgress();
+                document.getElementById('nextBtn').textContent = 'Next Step ➡️';
+                if (currentStep === 1) document.getElementById('prevBtn').disabled = true;
+            }
+        });
+
+        function updateProgress() {
+            document.getElementById('currentStep').textContent = currentStep;
+        }
+
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', () => {
+                option.classList.toggle('selected');
+            });
+        });
+
+        
+        document.querySelectorAll('.checkbox-custom').forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const step = e.target.closest('.step');
+                if (e.target.checked) {
+                    step.querySelector('.step-header').classList.add('completed');
+                } else {
+                    step.querySelector('.step-header').classList.remove('completed');
+                }
+            });
+        });
+
+       
+        const customizeBtn = document.getElementById('customizeBtn');
+        if (customizeBtn) {
+            customizeBtn.addEventListener('click', () => {
+                alert('✨ Your selected options will be highlighted in your personal plan! Feel free to mix & match 💕');
+            });
+        }
+
+        const printBtn = document.getElementById('printBtn');
+        if (printBtn) {
+            printBtn.addEventListener('click', () => {
+                window.print();
+            });
+        }
+
+
+        
+        updateProgress();
+        setTimeout(() => {
+            document.querySelector('[data-step="1"]').style.opacity = '1';
+            document.querySelector('[data-step="1"]').style.transform = 'translateY(0)';
+        }, 500);
+    </script>
+</body>
+</html>
+
